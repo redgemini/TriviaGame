@@ -17,8 +17,15 @@
     //If player runs out of time - 1) Tell Player "Time is up" 2) Display correct answer 3) Go to next question
     //If player is wrong - 1) Tell Player "Selected wrong answer" 2) Display correct
 
+
+    window.onload = function() {
+      $("#round").on("click", stopwatch.recordround);
+      $("#reset").on("click", stopwatch.reset);
+      $("#start").on("click", stopwatch.start);
+    };
     var questions = 
-    [{ question: "", choices: ["", "", "", ""], correctAnswer: 0 }, 
+    [
+    { question: "", choices: ["", "", "", ""], correctAnswer: 0 }, 
     { question: "", choices: ["", "", "", ""], correctAnswer: 0 },
     { question: "", choices: ["", "", "", ""], correctAnswer: 0 }, 
     { question: "", choices: ["", "", "", ""], correctAnswer: 0 }, 
@@ -29,3 +36,4 @@
     { question: "", choices: ["", "", "", ""], correctAnswer: 0 }, 
     { question: "", choices: ["", "", "", ""], correctAnswer: 0 }, 
     ]
+
