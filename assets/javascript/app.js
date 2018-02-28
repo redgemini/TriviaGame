@@ -16,24 +16,69 @@
     //If player is correct - 1) Show congratulatuons 2)Go to next question
     //If player runs out of time - 1) Tell Player "Time is up" 2) Display correct answer 3) Go to next question
     //If player is wrong - 1) Tell Player "Selected wrong answer" 2) Display correct
+//window.onload = function () {
+//$("#round").on("click", stopwatch.recordround);
+//$("#reset").on("click", stopwatch.reset);
+//$("#start").on("click", stopwatch.start);
+//};
 
+$(".start").on("click", function() {
+    for(var i=0;i<questions.length;i++){
+        $(".trivia").append("<h2>" + questions[i].questions+"</h2>");
+         for (var a = 0; a<questions[i].answers.length;a++) {
+             $(".trivia").append ("input type='radio' name='question-"+i+"' value='"+questions[i].answers[a]+"'>"+questions[i].answers[a])
+         }
+        }
+})
 
-    window.onload = function() {
-      $("#round").on("click", stopwatch.recordround);
-      $("#reset").on("click", stopwatch.reset);
-      $("#start").on("click", stopwatch.start);
-    };
-    var questions = 
-    [
-    { question: "", choices: ["", "", "", ""], correctAnswer: 0 }, 
-    { question: "", choices: ["", "", "", ""], correctAnswer: 0 },
-    { question: "", choices: ["", "", "", ""], correctAnswer: 0 }, 
-    { question: "", choices: ["", "", "", ""], correctAnswer: 0 }, 
-    { question: "", choices: ["", "", "", ""], correctAnswer: 0 }, 
-    { question: "", choices: ["", "", "", ""], correctAnswer: 0 }, 
-    { question: "", choices: ["", "", "", ""], correctAnswer: 0 }, 
-    { question: "", choices: ["", "", "", ""], correctAnswer: 0 }, 
-    { question: "", choices: ["", "", "", ""], correctAnswer: 0 }, 
-    { question: "", choices: ["", "", "", ""], correctAnswer: 0 }, 
-    ]
-
+var questions = [{
+        question: "What food does Carl eat out of a can while sitting on the roof of a house?",
+        choices: ["Corn", "Pudding", "Beans", "Applesauce"],
+        correctAnswer: 1
+    },
+    {
+        question: "",
+        choices: ["", "", "", ""],
+        correctAnswer: 0
+    },
+    {
+        question: "",
+        choices: ["", "", "", ""],
+        correctAnswer: 0
+    },
+    {
+        question: "",
+        choices: ["", "", "", ""],
+        correctAnswer: 0
+    },
+    {
+        question: "",
+        choices: ["", "", "", ""],
+        correctAnswer: 0
+    },
+    {
+        question: "",
+        choices: ["", "", "", ""],
+        correctAnswer: 0
+    },
+    {
+        question: "",
+        choices: ["", "", "", ""],
+        correctAnswer: 0
+    },
+    {
+        question: "",
+        choices: ["", "", "", ""],
+        correctAnswer: 0
+    },
+    {
+        question: "",
+        choices: ["", "", "", ""],
+        correctAnswer: 0
+    },
+    {
+        question: "",
+        choices: ["", "", "", ""],
+        correctAnswer: 0
+    },
+]
