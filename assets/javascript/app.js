@@ -9,7 +9,7 @@
         //then show the next question.
     //On the final screen, show the number of correct answers, incorrect answers, and an option to restart the game (without reloading the page).
 //Elements Needed:
-//Set of questions/answers
+//Set of questions/choices
 //25 second timer for each question - next question populates when time runs out
 //click function to select correct answer
 //If statements:  
@@ -22,11 +22,16 @@
 //$("#start").on("click", stopwatch.start);
 //};
 
+
+//Set of questions/choices
+
 $(".start").on("click", function() {
+        //Generate questions Loop
     for(var i=0;i<questions.length;i++){
-        $(".trivia").append("<h2>" + questions[i].questions+"</h2>");
-         for (var a = 0; a<questions[i].answers.length;a++) {
-             $(".trivia").append ("input type='radio' name='question-"+i+"' value='"+questions[i].answers[a]+"'>"+questions[i].answers[a])
+        $(".trivia").append("<h2>" + questions[i].question+"</h2>");
+        //Generate choices loop with Radio button
+    for (var a=0;a<questions[i].choices.length;a++) {
+             $(".trivia").append("<input type='radio' name='question-"+i+"'value='"+questions[i].choices[a]+"'>"+questions[i].choices[a])
          }
         }
 })
