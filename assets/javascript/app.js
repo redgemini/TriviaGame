@@ -70,14 +70,18 @@ var questions = [
 
 var game ={
     questions:questions,
-    currentQuestion:0,
     counter:25,
+    unanswered:0,
     correct:0,
     incorrect:0,
+    currentQuestion:0,
 
+    //Timer set up
     countdown: function(){
         game.counter--;
-        $(".counter").html(game.counter);
+
+        $("#counter").html(game.counter);
+
         if(game.counter===0){
             console.log("Out of Time! Try Again");
             game.timeUp();
@@ -90,6 +94,10 @@ var game ={
 
         //Load Question
         $(".trivia").html("<h2>" + questions[game.currentQuestion].question + "</h2>");
+        
+        //HTML
+        $(".trivia").html('<h2>Time Left: <span id="counter">10</span> Seconds!</h2>');
+        $(".trivia").append("<h2>" + questions[game.currentQuestion].question + "</h2>");
 
         //Load Answers in buttons - https://api.jquery.com/event.data/
         for (var i = 0; i < questions[game.currentQuestion].answers.length; i++) {
@@ -97,10 +105,17 @@ var game ={
         ' "data-name="' + questions[game.currentQuestion].answers[i] + '">' + 
         questions[game.currentQuestion].answers[i] + "</button>");
         }
-         
+    
     },
     nextQuestion: function () {
-        
+        //Restart timer
+        game.counter=25;
+        $('#counter').html(game.counter);
+        game.currentQuestion++;
+        game.loadQuestion();
+
+        //Restart HTML
+ 
     },
     timeUp: function (){
 
@@ -113,28 +128,39 @@ var game ={
         //Clear timer
         clearInterval(timer);
 
-        //Ifhttps://api.jquery.com/event.target/
-        if($(e.target).data("name")===questions[game.currentQueston].
+        //Connect Clicked Button with correct answer - https://api.jquery.com/event.target/
+        if($(e.target).data("name")===questions[game.currentQuestion].
         correctAnswer){
-            game.answerCorrect();
+        game.answerCorrect();
+        }else{
+        game.answerIncorrect();
         }
-        else {
-            game.answerIncorrect();
-            }
     },
 
     answerCorrect: function(){
         console.log("You are correct");
         clearInterval(timer);
         game.correct++;
+        $('.trivia').html('<h2>You are Correct!</h2>');
 
+        if(game.currentQuestion===questions.length-1){
+        setTimeout(game.results,1000);
+        }else{
+        setTimeout(game.nextQuestion,1000);
+        }
     },
 
     answerIncorrect: function(){
-        console.log("Eh,not this time! Try Again!")
+        console.log("Ah! So Close! Try Again!")
         clearInterval(timer);
         game.incorrect++;
+        $(".trivia").html('<h2>Ah! So Close! Try Again! </h2>');
 
+        if (game.currentQuestion === questions.length - 1) {
+        setTimeout(game.results, 1000);
+        } else {
+        setTimeout(game.nextQuestion, 1000);
+        }
     },
 
     reset: function(){
