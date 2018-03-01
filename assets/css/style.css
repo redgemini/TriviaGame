@@ -4,7 +4,7 @@ html{
 
 }
 body {
-    background: white;
+    background: url("../images/TWD_Background.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;

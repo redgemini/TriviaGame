@@ -1,16 +1,21 @@
 //-----Functions-----
   //Generate questions Loop
+
+  //Remove Start Button
   $(".start").on("click", function () {
     $(".start").remove();  
     game.loadQuestion();
   })
-
-//Game Questions/Choices
+//Check page for correct answer by passing through event   https://api.jquery.com/click/#click-eventData-handler
+  $(document).on('click','.answer-button', functon(e){
+      game.clicked(e);
+  })
+//Game Questions/Answers
 var questions = [
   {
-    question1:
+    question:
       "What food does Carl eat out of a can while sitting on the roof of a house?",
-    choices: [
+    answers: [
         "Corn",
         "Pudding",
         "Beans",
@@ -20,8 +25,8 @@ var questions = [
   },
 
   {
-    question2: "What does Michonne stab the governor's eye with?",
-    choices: [
+    question: "What does Michonne stab the governor's eye with?",
+    answers: [
       "Her Katana",
       "A Shard of Glass",
       "The Governor's Knife",
@@ -31,8 +36,8 @@ var questions = [
   },
 
   {
-    question3: "Who tells Rick she also has talked to a deceased loved one?",
-    choices: [
+    question: "Who tells Rick she also has talked to a deceased loved one?",
+    answers: [
         "Beth",
         "Andrea",
         "Carol",
@@ -41,8 +46,8 @@ var questions = [
     correct: "Michonne"
   },
   {
-    question4: "Who gives Carol a cherokee rose?",
-    choices: [
+    question: "Who gives Carol a cherokee rose?",
+    answers: [
         "Daryl",
         "Dale",
         "Sophia",
@@ -51,8 +56,8 @@ var questions = [
     correct: "Daryl"
   },
   {
-    question5: "Who lets all the walkers out of the Greene's barn?",
-    choices: [
+    question: "Who lets all the walkers out of the Greene's barn?",
+    answers: [
         "Hershel",
         "Carol",
         "Rick",
@@ -70,21 +75,29 @@ var game ={
     incorrect:0,
 
     countdown: function(){
-        gameBoard.counter--;
+        game.counter--;
         $(".counter").html(game.counter);
         if(game.counter===0){
             console.log("Out of Time! Try Again");
             game.timeUp();
         }
-        
+
     },
     loadQuestion: function(){
-        timer =setInterval(game.countdown,2000);
-        $('trivia').html('<h2>'+question[game.currentQuestion].question + '</h2>');
-        for (var i=0; i<questions[game.currentQuestion].answers.length;i++){
-            $('trivia').append('<button class="answer.button" id=button-'+i+'"data-name="'+questions[game.currentQuestion].answers[i]+'">'+questions[game.currentQuestion].answers[i]+'</button>');
-        }
-    },
+                              //Set Timer
+                              timer = setInterval(game.countdown, 2000);
+                              //Load Question
+                              $(".trivia").html("<h2>" + questions[game.currentQuestion].question + "</h2>");
+                              //Load Answers in buttons - https://api.jquery.com/event.data/
+                              for (var i = 0; i < questions[game.currentQuestion].answers.length; i++) {
+                                $(".trivia").append('<button class="answers.button" id=button-' + i + ' "data-name="' + questions[game.currentQuestion].answers[i] + '">' + questions[game.currentQuestion].answers[i] + "</button>");
+                              }
+
+                              //Generate answers loop with Radio button
+                              for (var a = 0; a < questions[i].answers.length; a++) {
+                                $(".trivia").append("<input type='radio' name='question-" + i + "'value='" + questions[i].answers[a] + "'>" + questions[i].answers[a]);
+                              }
+                            },
     nextQuestion: function () {
         
     },
@@ -97,13 +110,26 @@ var game ={
 
     clicked: function (){
 
+        //Clear timer
+        clearInterval(timer);
+
+        //https://api.jquery.com/event.target/
+        if($(e.target).data("name")==questions[game.correctQueston].
+        correctAnswers){
+            game.answerCorrect();
+        }
+        else {
+                game.answerIncorrect();
+            }
     },
 
     answerCorrect: function(){
+        console.log("You are correct");
 
     },
 
     answerIncorrect: function(){
+        console.log("Eh,not this time! Try Again!")
 
     },
 
@@ -119,6 +145,7 @@ var game ={
 //--Console.log Testing--
 console.log(questions);
 console.log(questions.q1);
+console.log(timer);
 
 
 
