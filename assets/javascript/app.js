@@ -108,21 +108,39 @@ var game ={
     
     },
     nextQuestion: function () {
-        //Restart timer
-        game.counter=25;
-        $('#counter').html(game.counter);
+        //Restart
+        game.counter=5;
+        $("#counter").html(game.counter);
         game.currentQuestion++;
         game.loadQuestion();
 
         //Restart HTML
- 
-    },
+     },
     timeUp: function (){
+        //Clear Timer
+        clearInterval (timer);
+
+        //HTML
+         $(".trivia").html("<h1>Time is Up!</h1>");
+         $(".trivia").append("<h3>The correct Answer is:" + questions[game.currentQuestion].correctAnswer + " </h3>");
+         $(".trivia").append("<span>" + questions[game.currentQuestion].image + "</span>");
+         
+         //
+         if (game.currentQuestion == questions.length - 1) {
+           setTimeout(game.results, 2 * 1000);
+         } else {
+           setTimeout(game.nextQuestion, 2 * 1000);
+         }
+
 
     },
     results: function (){
+        //Clear Timer
+        clearInterval(timer);
 
-    },
+        //HTML
+        
+                        },
 
     clicked: function (){
         //Clear timer
