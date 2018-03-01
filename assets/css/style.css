@@ -1,10 +1,11 @@
 html{
  color: blanchedalmond;
+ 
 
 }
 body {
-     background: url("../images/TWD_Background.jpg");
-    background-size: 100%;
+    background: url("../images/TWD_Background.jpg");
+    background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
@@ -12,9 +13,7 @@ body {
     padding: 25px;
     color: blanchedalmond;
 }
-h1{
-    color:black;
-}
+
 img.bg {
     /* Set rules to fill background */
     min-height: 100%;
