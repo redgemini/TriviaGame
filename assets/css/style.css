@@ -4,7 +4,7 @@ html{
 
 }
 body {
-    background: url("../images/TWD_Background.jpg");
+    background: whitesmoke;
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -43,4 +43,11 @@ img.bg {
     width: 150px;
     text-align: center;
     margin:0 auto;
+}
+.answer-button{
+    color:blanchedalmond;
+}
+
+#button{
+    color:blanchedalmond
 }

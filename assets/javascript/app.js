@@ -1,15 +1,16 @@
 //-----Functions-----
-  //Generate questions Loop
 
-  //Remove Start Button
-  $(".start").on("click", function () {
+//Remove Start Button
+$(".start").on("click", function () {
     $(".start").remove();  
     game.loadQuestion();
-  })
+
+})
+
 //Check page for correct answer by passing through event   https://api.jquery.com/click/#click-eventData-handler
-  $(document).on('click','.answer-button', functon(e){
+$(document).on('click','.answer-button',function(e){
       game.clicked(e);
-  })
+})
 //Game Questions/Answers
 var questions = [
   {
@@ -21,7 +22,7 @@ var questions = [
         "Beans",
         "Applesauce"
     ],
-    correct: "pudding"
+    correctAnswer: "Pudding"
   },
 
   {
@@ -32,7 +33,7 @@ var questions = [
       "The Governor's Knife",
       "A piece of Wood"
     ],
-    correct: "A Shard of Glass"
+    correctAnswer: "A Shard of Glass"
   },
 
   {
@@ -43,7 +44,7 @@ var questions = [
         "Carol",
         "Michonne"
     ],
-    correct: "Michonne"
+    correctAnswer: "Michonne"
   },
   {
     question: "Who gives Carol a cherokee rose?",
@@ -53,7 +54,7 @@ var questions = [
         "Sophia",
         "Andrea"
     ],
-    correct: "Daryl"
+    correctAnswer: "Daryl"
   },
   {
     question: "Who lets all the walkers out of the Greene's barn?",
@@ -63,7 +64,7 @@ var questions = [
         "Rick",
         "Shane"
     ],
-    correct: "Shane"
+    correctAnswer: "Shane"
   }
 ];
 
@@ -84,20 +85,20 @@ var game ={
 
     },
     loadQuestion: function(){
-                              //Set Timer
-                              timer = setInterval(game.countdown, 2000);
-                              //Load Question
-                              $(".trivia").html("<h2>" + questions[game.currentQuestion].question + "</h2>");
-                              //Load Answers in buttons - https://api.jquery.com/event.data/
-                              for (var i = 0; i < questions[game.currentQuestion].answers.length; i++) {
-                                $(".trivia").append('<button class="answers.button" id=button-' + i + ' "data-name="' + questions[game.currentQuestion].answers[i] + '">' + questions[game.currentQuestion].answers[i] + "</button>");
-                              }
+        //Set Timer
+        timer = setInterval(game.countdown, 1000);
 
-                              //Generate answers loop with Radio button
-                              for (var a = 0; a < questions[i].answers.length; a++) {
-                                $(".trivia").append("<input type='radio' name='question-" + i + "'value='" + questions[i].answers[a] + "'>" + questions[i].answers[a]);
-                              }
-                            },
+        //Load Question
+        $(".trivia").html("<h2>" + questions[game.currentQuestion].question + "</h2>");
+
+        //Load Answers in buttons - https://api.jquery.com/event.data/
+        for (var i = 0; i < questions[game.currentQuestion].answers.length; i++) {
+        $(".trivia").append('<button class="answer.button" id=button-' + i + 
+        ' "data-name="' + questions[game.currentQuestion].answers[i] + '">' + 
+        questions[game.currentQuestion].answers[i] + "</button>");
+        }
+         
+    },
     nextQuestion: function () {
         
     },
@@ -109,27 +110,30 @@ var game ={
     },
 
     clicked: function (){
-
         //Clear timer
         clearInterval(timer);
 
-        //https://api.jquery.com/event.target/
-        if($(e.target).data("name")==questions[game.correctQueston].
-        correctAnswers){
+        //Ifhttps://api.jquery.com/event.target/
+        if($(e.target).data("name")===questions[game.currentQueston].
+        correctAnswer){
             game.answerCorrect();
         }
         else {
-                game.answerIncorrect();
+            game.answerIncorrect();
             }
     },
 
     answerCorrect: function(){
         console.log("You are correct");
+        clearInterval(timer);
+        game.correct++;
 
     },
 
     answerIncorrect: function(){
         console.log("Eh,not this time! Try Again!")
+        clearInterval(timer);
+        game.incorrect++;
 
     },
 
@@ -143,9 +147,7 @@ var game ={
 
 
 //--Console.log Testing--
-console.log(questions);
-console.log(questions.q1);
-console.log(timer);
+
 
 
 
