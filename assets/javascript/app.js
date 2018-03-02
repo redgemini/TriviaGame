@@ -22,7 +22,8 @@ var questions = [
         "Beans",
         "Applesauce"
     ],
-    correctAnswer: 1
+    correctAnswer: "Pudding"
+    
   },
 
   {
@@ -123,7 +124,7 @@ var game = {
                                 //-----Next Question-----//
   nextQuestion: function() {
     //Restart
-    game.counter = 5;
+    game.counter = 15;
     $("#counter").html(game.counter);
     game.currentQuestion++;
     game.loadQuestion();
@@ -133,6 +134,7 @@ var game = {
   timeUp: function() {
     //Clear Timer
     clearInterval(timer);
+    game.unanswered++;
 
     //HTML
     $(".trivia").html("<h1>Time is Up!</h1>");
@@ -180,29 +182,31 @@ var game = {
     }
   },
 
-  answerCorrect: function() {
-    console.log("You are correct");
+  answerCorrect: function () {
+    console.log("You're Right!");
     clearInterval(timer);
     game.correct++;
-    $(".trivia").html("<h2>You are Correct!</h2>");
+    $(".trivia").html("<h2>You got it!</h2>");
+    $(".trivia").append('<span>' + questions[game.currentQuestion].image + '</span>');
 
     if (game.currentQuestion === questions.length - 1) {
-      setTimeout(game.results, 1000);
+      setTimeout(game.results, 2*1000);
     } else {
-      setTimeout(game.nextQuestion, 1000);
+      setTimeout(game.nextQuestion, 2*1000);
     }
   },
 
   answerIncorrect: function() {
-    console.log("Ah! So Close! Try Again!");
+    console.log("So Close! Try Again!");
     clearInterval(timer);
     game.incorrect++;
-    $(".trivia").html("<h2>Ah! So Close! Try Again! </h2>");
+    $(".trivia").html("<h2>So Close! Try Again! </h2>");
+    $(".trivia").append('<span>' + questions[game.currentQuestion].image + '</span>');
 
     if (game.currentQuestion === questions.length - 1) {
-      setTimeout(game.results, 1000);
+      setTimeout(game.results, 2*1000);
     } else {
-      setTimeout(game.nextQuestion, 1000);
+      setTimeout(game.nextQuestion, 2*1000);
     }
   },
 
@@ -212,11 +216,14 @@ var game = {
     game.correct=0;
     game.incorrect=0;
     game.currentQuestion=0;
+    game.loadQuestion();
 
   }
 }
 
-
+$(document).on('click', '#reset', function (){
+  game.reset();
+})
 
 
 //--Console.log Testing--
@@ -227,3 +234,5 @@ console.log(game.incorrect)
 
 
 
+//TA questions
+//Correct answers are not working
