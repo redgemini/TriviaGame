@@ -9,7 +9,7 @@ $(".start").on("click", function () {
 
 //Check page for correct answer by passing through event   https://api.jquery.com/click/#click-eventData-handler
 $(document).on('click','.answer-button',function(e){
-      game.clicked(e);
+      game.clicked($(e.target).text());
 })
                                 //-----Game Questions/Answers-----//
 var questions = [
