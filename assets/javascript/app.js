@@ -77,7 +77,7 @@ var questions = [
 
 var game = {
   questions: questions,
-  counter:15,
+  counter:10,
   unanswered: 0,
   correct: 0,
   incorrect: 0,
@@ -106,7 +106,7 @@ var game = {
     );
 
     $(".trivia").html(
-      '<h2>Time Left: <span id="counter">15</span> Seconds!</h2>'
+      '<h2>Time Left: <span id="counter">10</span> Seconds!</h2>'
     );
     //Load Question
 
@@ -130,7 +130,7 @@ var game = {
                                 //-----Next Question-----//
   nextQuestion: function() {
     //Restart
-    game.counter = 15;
+    game.counter = 10;
     $("#counter").html(game.counter);
     game.currentQuestion++;
     game.loadQuestion();
@@ -192,9 +192,9 @@ var game = {
     $(".trivia").html("<h2>You got it!</h2>");
 
     if (game.currentQuestion === questions.length - 1) {
-      setTimeout(game.results, 2*1000);
+      setTimeout(game.results, 1000);
     } else {
-      setTimeout(game.nextQuestion, 2*1000);
+      setTimeout(game.nextQuestion, 1000);
     }
   },
 
@@ -207,14 +207,14 @@ var game = {
         + questions[game.currentQuestion].correctAnswer + " </h3>");
 
     if (game.currentQuestion === questions.length - 1) {
-      setTimeout(game.results, 2*1000);
+      setTimeout(game.results, 1000);
     } else {
-      setTimeout(game.nextQuestion, 2*1000);
+      setTimeout(game.nextQuestion, 1000);
     }
   },
 
   reset: function() {
-    game.counter = 15;
+    game.counter = 10;
     game.unanswered = 0;
     game.correct=0;
     game.incorrect=0;
