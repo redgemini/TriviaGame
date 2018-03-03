@@ -9,64 +9,70 @@ $(".start").on("click", function () {
 
 //Check page for correct answer by passing through event   https://api.jquery.com/click/#click-eventData-handler
 $(document).on('click','.answer-button',function(e){
+  console.log(e);
       game.clicked($(e.target).text());
 })
                                 //-----Game Questions/Answers-----//
 var questions = [
   {
-    question:
-      "What food does Carl eat out of a can while sitting on the roof of a house?",
-    answers: [
-        "Corn",
-        "Pudding",
-        "Beans",
-        "Applesauce"
-    ],
+    question:"What food does Carl eat out of a can while sitting on the roof of a house?",
+    answers: ["Corn", "Pudding", "Beans", "Applesauce"],
     correctAnswer: "Pudding"
-    
   },
-
   {
     question: "What does Michonne stab the governor's eye with?",
-    answers: [
-      "Her Katana",
-      "A Shard of Glass",
-      "The Governor's Knife",
-      "A piece of Wood"
-    ],
+    answers: ["Her Katana","A Shard of Glass","The Governor's Knife","A piece of Wood"],
     correctAnswer: "A Shard of Glass"
   },
 
   {
     question: "Who tells Rick she also has talked to a deceased loved one?",
-    answers: [
-        "Beth",
-        "Andrea",
-        "Carol",
-        "Michonne"
-    ],
+    answers: ["Beth", "Andrea", "Carol", "Michonne"],
     correctAnswer: "Michonne"
   },
   {
     question: "Who gives Carol a cherokee rose?",
-    answers: [
-        "Daryl",
-        "Dale",
-        "Sophia",
-        "Andrea"
-    ],
+    answers: ["Daryl", "Dale", "Sophia", "Andrea"],
     correctAnswer: "Daryl"
   },
   {
     question: "Who lets all the walkers out of the Greene's barn?",
-    answers: [
-        "Hershel",
-        "Carol",
-        "Rick",
-        "Shane"
-    ],
+    answers: ["Hershel", "Carol", "Rick", "Shane"],
     correctAnswer: "Shane"
-  }
+  },
+  {
+    question: "Who was killed by Negan in the first episode of season 8?",
+    answers: ["Abraham and Maggie","Glenn and Maggie","Rick and Daryl", "Abraham and Glenn"],
+    correctAnswer: "Abraham and Glenn"
+  },
+  {
+    question: "What is Negan's bat called",
+    answers: ["Betty", "Lucy", "Lucille", "Lucky"],
+    correctAnswer: "Lucille"
+  },
+  {
+    question: "What is the king called that carol and Morgan find?",
+    answers: ["King Ezekiel", "King Lordroth", "King Sweden", "King Walkers"],
+    correctAnswer: "King Ezekiel"
+  },
+  
+  {
+    question: "Who claimed to have worked on the Human Genome Project?",
+    answers: ["Abraham", "Eugene", "Tara", "Rosita"],
+    correctAnswer: "Eugene"
+  },
+  {
+    question: "Which game do Beth and Daryl play while getting drunk on moonshine?",
+    answers: ["Two truths and a lie", "Poker", "Never Have I ever", "Truth or Dare"],
+    correctAnswer: "Never Have I Ever"
+  },
+  {
+    question: "Who said this: 'Anger makes you stupid.Stupid gets you killed?''",
+    answers: ["TCarol", "Daryl", "Rick", "Michonne"],
+    correctAnswer: "Michonne"
+  },
+
+
 ];
 
 var game = {
@@ -143,9 +149,6 @@ var game = {
         questions[game.currentQuestion].correctAnswer +
         " </h3>"
     );
-    $(".trivia").append(
-      "<span>" + questions[game.currentQuestion].image + "</span>"
-    );
 
     //
     if (game.currentQuestion == questions.length - 1) {
@@ -187,7 +190,6 @@ var game = {
     clearInterval(timer);
     game.correct++;
     $(".trivia").html("<h2>You got it!</h2>");
-    $(".trivia").append('<span>' + questions[game.currentQuestion].image + '</span>');
 
     if (game.currentQuestion === questions.length - 1) {
       setTimeout(game.results, 2*1000);
@@ -201,7 +203,8 @@ var game = {
     clearInterval(timer);
     game.incorrect++;
     $(".trivia").html("<h2>So Close! Try Again! </h2>");
-    $(".trivia").append('<span>' + questions[game.currentQuestion].image + '</span>');
+    $(".trivia").append("<h3>The correct Answer is:" 
+        + questions[game.currentQuestion].correctAnswer + " </h3>");
 
     if (game.currentQuestion === questions.length - 1) {
       setTimeout(game.results, 2*1000);
